@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:weather_app/models/current.dart';
+import 'package:weather_app/models/forcast.dart';
 import 'package:weather_app/models/suggestion.dart';
+import 'package:weather_app/provider/forcast_provider.dart';
 import 'package:weather_app/services/forcast.dart';
+import 'package:weather_app/ui/widgets/noconnection.dart';
 
 class Search extends SearchDelegate {
   ForcastWeather weather = ForcastWeather();
@@ -25,9 +29,7 @@ class Search extends SearchDelegate {
   Widget? buildLeading(BuildContext context) {
     return IconButton(
       icon: const Icon(Icons.arrow_back_ios_rounded),
-      onPressed: () async {
-        CurrentWeatherModel? p = await weather.getCurrentWeatherResponse(query);
-        print(p?.name);
+      onPressed: () {
         close(context, null);
       },
     );
@@ -57,14 +59,30 @@ class Search extends SearchDelegate {
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) => ListTile(
                     title: Text(
-                        '${snapshot.data![index].name}-${snapshot.data![index].region}'),
+                        '${snapshot.data![index].name}, ${snapshot.data![index].region}'),
                     trailing: Text(snapshot.data![index].country),
+                    onTap: () async {
+                      String queryy = snapshot.data![index].name;
+                      ({
+                        CurrentWeatherModel? currenDay,
+                        ForcastWeatherModel? nextDay,
+                        ForcastWeatherModel? nnextDay
+                      }) dayForcasts = (
+                        currenDay:
+                            await weather.getCurrentWeatherResponse(queryy),
+                        nextDay: await weather.getWeatherForcast(
+                            query: queryy, dayIndex: 1),
+                        nnextDay: await weather.getWeatherForcast(
+                            query: queryy, dayIndex: 2)
+                      );
+
+                      context.read<Forcast>().setForcastDays = dayForcasts;
+                      close(context, null);
+                    },
                   ));
         }
 
-        return const Center(
-          child: Text('No result'),
-        );
+        return const NoConnection();
       },
     );
   }
