@@ -7,6 +7,7 @@ class CurrentWeatherModel {
   double tempF;
   String condtionText;
   int code;
+  int isDay;
 
   CurrentWeatherModel(
       {required this.name,
@@ -16,7 +17,8 @@ class CurrentWeatherModel {
       required this.tempC,
       required this.tempF,
       required this.condtionText,
-      required this.code});
+      required this.code,
+      required this.isDay});
 
   factory CurrentWeatherModel.fromJson(Map<String, dynamic> json) {
     return CurrentWeatherModel(
@@ -27,6 +29,7 @@ class CurrentWeatherModel {
         tempC: json['current']['temp_c'],
         tempF: json['current']['temp_f'],
         condtionText: json['current']['condition']['text'],
-        code: json['current']['condition']['code']);
+        code: json['current']['condition']['code'],
+        isDay: json['current']['is_day']);
   }
 }

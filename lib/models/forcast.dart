@@ -14,6 +14,7 @@ class ForcastWeatherModel {
   double avgTempF;
   String sunriseTime;
   String sunsetTime;
+  int isDay;
   ForcastWeatherModel(
       {required this.name,
       required this.region,
@@ -29,7 +30,8 @@ class ForcastWeatherModel {
       required this.avgTempF,
       required this.dayDate,
       required this.sunriseTime,
-      required this.sunsetTime});
+      required this.sunsetTime,
+      required this.isDay});
 
   factory ForcastWeatherModel.fromJson(
       Map<String, dynamic> json, int dayIndex) {
@@ -52,6 +54,7 @@ class ForcastWeatherModel {
       sunriseTime: json['forecast']['forecastday'][dayIndex]['astro']
           ['sunrise'],
       sunsetTime: json['forecast']['forecastday'][dayIndex]['astro']['sunset'],
+      isDay: json['current']['is_day'],
     );
   }
 }

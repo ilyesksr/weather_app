@@ -34,12 +34,12 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              FittedBox(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
                       'Weather Forcast',
                       textAlign: TextAlign.start,
                       style: Theme.of(context)
@@ -48,21 +48,18 @@ class _HomePageState extends State<HomePage> {
                           ?.copyWith(
                               color: Theme.of(context).colorScheme.primary),
                     ),
-                    SizedBox(
-                      width: margine,
-                    ),
-                    IconButton(
-                        onPressed: () {
-                          context.read<Forcast>().toggleTheme();
-                        },
-                        icon: Selector<Forcast, bool>(
-                          selector: (_, forcast) => forcast.isDark ?? false,
-                          builder: (context, isDark, _) => isDark
-                              ? Icon(Icons.nights_stay_rounded)
-                              : Icon(Icons.sunny),
-                        ))
-                  ],
-                ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        context.read<Forcast>().toggleTheme();
+                      },
+                      icon: Selector<Forcast, bool>(
+                        selector: (_, forcast) => forcast.isDark ?? false,
+                        builder: (context, isDark, _) => isDark
+                            ? Icon(Icons.nights_stay_rounded)
+                            : Icon(Icons.sunny),
+                      ))
+                ],
               ),
               const SizedBox(
                 height: padding,

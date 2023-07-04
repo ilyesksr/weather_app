@@ -80,7 +80,9 @@ class CurrentForcast extends StatelessWidget {
             alignment: AlignmentDirectional.topEnd,
             child: Padding(
               padding: const EdgeInsets.all(padding),
-              child: Image(image: AssetImage('images/$icon.png')),
+              child: currentWeath.isDay == 1
+                  ? Image(image: AssetImage('images/$icon.png'))
+                  : Image(image: AssetImage('assets2/$icon.png')),
             )),
       ],
     );

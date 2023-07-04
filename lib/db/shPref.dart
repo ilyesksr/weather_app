@@ -32,6 +32,7 @@ class Prefs {
       data.currenDay.tempF.toString(),
       data.currenDay.condtionText,
       data.currenDay.code.toString(),
+      data.currenDay.isDay.toString(),
     ]);
     await prefs!.setStringList('nextDay', <String>[
       data.nextDay.name,
@@ -48,6 +49,7 @@ class Prefs {
       data.nextDay.avgTempF.toString(),
       data.nextDay.sunriseTime.toString(),
       data.nextDay.sunsetTime.toString(),
+      data.nextDay.isDay.toString(),
     ]);
     await prefs!.setStringList('thirdDay', <String>[
       data.thirdDay.name,
@@ -64,6 +66,7 @@ class Prefs {
       data.thirdDay.avgTempF.toString(),
       data.thirdDay.sunriseTime.toString(),
       data.thirdDay.sunsetTime.toString(),
+      data.thirdDay.isDay.toString(),
     ]);
   }
 
@@ -77,6 +80,7 @@ class Prefs {
     List<String>? nextDay = await prefs!.getStringList('nextDay');
     List<String>? thirdDay = await prefs!.getStringList('thirdDay');
     if (currenDay != null && nextDay != null && thirdDay != null) {
+      Prefs.clean();
       ({
         CurrentWeatherModel currenDay,
         ForcastWeatherModel nextDay,
@@ -90,39 +94,44 @@ class Prefs {
             tempC: double.parse(currenDay[4]),
             tempF: double.parse(currenDay[5]),
             condtionText: currenDay[6],
-            code: int.parse(currenDay[7])),
+            code: int.parse(currenDay[7]),
+            isDay: int.parse(currenDay[8])),
         nextDay: ForcastWeatherModel(
-            name: nextDay[0],
-            region: nextDay[1],
-            country: nextDay[2],
-            localTime: '',
-            condtionText: nextDay[3],
-            code: int.parse(nextDay[4]),
-            dayDate: nextDay[5],
-            maxTempC: double.parse(nextDay[6]),
-            maxTempF: double.parse(nextDay[7]),
-            minTempC: double.parse(nextDay[8]),
-            minTempF: double.parse(nextDay[9]),
-            avgTempC: double.parse(nextDay[10]),
-            avgTempF: double.parse(nextDay[11]),
-            sunriseTime: nextDay[12],
-            sunsetTime: nextDay[13]),
+          name: nextDay[0],
+          region: nextDay[1],
+          country: nextDay[2],
+          localTime: '',
+          condtionText: nextDay[3],
+          code: int.parse(nextDay[4]),
+          dayDate: nextDay[5],
+          maxTempC: double.parse(nextDay[6]),
+          maxTempF: double.parse(nextDay[7]),
+          minTempC: double.parse(nextDay[8]),
+          minTempF: double.parse(nextDay[9]),
+          avgTempC: double.parse(nextDay[10]),
+          avgTempF: double.parse(nextDay[11]),
+          sunriseTime: nextDay[12],
+          sunsetTime: nextDay[13],
+          isDay: int.parse(nextDay[14]),
+        ),
         thirdDay: ForcastWeatherModel(
-            name: thirdDay[0],
-            region: thirdDay[1],
-            country: thirdDay[2],
-            localTime: '',
-            condtionText: thirdDay[3],
-            code: int.parse(thirdDay[4]),
-            dayDate: thirdDay[5],
-            maxTempC: double.parse(thirdDay[6]),
-            maxTempF: double.parse(thirdDay[7]),
-            minTempC: double.parse(thirdDay[8]),
-            minTempF: double.parse(thirdDay[9]),
-            avgTempC: double.parse(thirdDay[10]),
-            avgTempF: double.parse(thirdDay[11]),
-            sunriseTime: thirdDay[12],
-            sunsetTime: thirdDay[13]),
+          name: thirdDay[0],
+          region: thirdDay[1],
+          country: thirdDay[2],
+          localTime: '',
+          condtionText: thirdDay[3],
+          code: int.parse(thirdDay[4]),
+          dayDate: thirdDay[5],
+          maxTempC: double.parse(thirdDay[6]),
+          maxTempF: double.parse(thirdDay[7]),
+          minTempC: double.parse(thirdDay[8]),
+          minTempF: double.parse(thirdDay[9]),
+          avgTempC: double.parse(thirdDay[10]),
+          avgTempF: double.parse(thirdDay[11]),
+          sunriseTime: thirdDay[12],
+          sunsetTime: thirdDay[13],
+          isDay: int.parse(thirdDay[14]),
+        ),
       );
       return result;
     }
