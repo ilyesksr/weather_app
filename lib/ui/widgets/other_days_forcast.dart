@@ -9,31 +9,30 @@ class OtherDaysForcast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTextStyle(
-      style: const TextStyle(color: Colors.blue),
-      child: Stack(
-        children: [
-          Card(
-            color: Theme.of(context).colorScheme.onSecondary,
-            child: Padding(
-              padding: const EdgeInsets.all(padding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    weather.condtionText,
-                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  const SizedBox(
-                    height: padding,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Column(
+    return Stack(
+      children: [
+        Card(
+          color: Theme.of(context).colorScheme.onSecondary,
+          child: Padding(
+            padding: const EdgeInsets.all(padding),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  weather.condtionText,
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontWeight: FontWeight.w500),
+                ),
+                const SizedBox(
+                  height: padding,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -43,7 +42,8 @@ class OtherDaysForcast extends StatelessWidget {
                                 .textTheme
                                 .labelLarge
                                 ?.copyWith(
-                                    color: Theme.of(context).primaryColor),
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
                           ),
                           Text(
                             'Min Temp : ${weather.minTempC.toInt()}°C / ${weather.minTempF.toInt()}°F',
@@ -52,7 +52,8 @@ class OtherDaysForcast extends StatelessWidget {
                                 .textTheme
                                 .labelLarge
                                 ?.copyWith(
-                                    color: Theme.of(context).primaryColor),
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
                           ),
                           Text(
                             'Avg Temp : ${weather.avgTempC.toInt()}°C / ${weather.avgTempF.toInt()}°F',
@@ -61,11 +62,14 @@ class OtherDaysForcast extends StatelessWidget {
                                 .textTheme
                                 .labelLarge
                                 ?.copyWith(
-                                    color: Theme.of(context).primaryColor),
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
                           ),
                         ],
                       ),
-                      Column(
+                    ),
+                    Expanded(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -76,7 +80,9 @@ class OtherDaysForcast extends StatelessWidget {
                                 .textTheme
                                 .titleMedium
                                 ?.copyWith(
-                                    color: Theme.of(context).primaryColor),
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    fontSize: 16),
                           ),
                           Text(
                             weather.region,
@@ -84,71 +90,80 @@ class OtherDaysForcast extends StatelessWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge
-                                ?.copyWith(
-                                    color: Theme.of(context).primaryColor),
+                                ?.copyWith(fontSize: 16)
+                                .copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
                           ),
                         ],
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: padding,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      // Expanded(
-                      //   child: Text(
-                      //     '${weather.name}, ${weather.region}',
-                      //     style: Theme.of(context)
-                      //         .textTheme
-                      //         .titleMedium
-                      //         ?.copyWith(color: Theme.of(context).primaryColor),
-                      //   ),
-                      // ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Sunrise : ${weather.sunriseTime}',
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge
-                                  ?.copyWith(
-                                      color: Theme.of(context).primaryColor),
-                            ),
-                            Text(
-                              'Sunset : ${weather.sunsetTime}',
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge
-                                  ?.copyWith(
-                                      color: Theme.of(context).primaryColor),
-                            ),
-                          ],
-                        ),
                       ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: padding,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    // Expanded(
+                    //   child: Text(
+                    //     '${weather.name}, ${weather.region}',
+                    //     style: Theme.of(context)
+                    //         .textTheme
+                    //         .titleMedium
+                    //         ?.copyWith(color: Theme.of(context).primaryColor),
+                    //   ),
+                    // ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Sunrise : ${weather.sunriseTime}',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelLarge
+                                ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                          ),
+                          Text(
+                            'Sunset : ${weather.sunsetTime}',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelLarge
+                                ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                          ),
+                        ],
+                      ),
+                    ),
 
-                      Text(
-                        '${weather.dayDate} - ${weather.country}',
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color:
-                                Theme.of(context).primaryColor.withOpacity(.7)),
-                      )
-                    ],
-                  )
-                ],
-              ),
+                    Text(
+                      '${weather.dayDate} - ${weather.country}',
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(.7)),
+                    )
+                  ],
+                )
+              ],
             ),
           ),
-          Align(
-              alignment: AlignmentDirectional.topEnd,
-              child: Image(image: AssetImage('images/$icon.png'))),
-        ],
-      ),
+        ),
+        Align(
+            alignment: AlignmentDirectional.topEnd,
+            child: Padding(
+              padding: const EdgeInsets.all(padding),
+              child: Image(image: AssetImage('images/$icon.png')),
+            )),
+      ],
     );
   }
 }

@@ -66,13 +66,13 @@ class Search extends SearchDelegate {
                       ({
                         CurrentWeatherModel? currenDay,
                         ForcastWeatherModel? nextDay,
-                        ForcastWeatherModel? nnextDay
+                        ForcastWeatherModel? thirdDay
                       }) dayForcasts = (
                         currenDay:
                             await weather.getCurrentWeatherResponse(queryy),
                         nextDay: await weather.getWeatherForcast(
                             query: queryy, dayIndex: 1),
-                        nnextDay: await weather.getWeatherForcast(
+                        thirdDay: await weather.getWeatherForcast(
                             query: queryy, dayIndex: 2)
                       );
 

@@ -6,12 +6,16 @@ class SearchCityTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-        decoration: const InputDecoration(
+    return GestureDetector(
+      onTap: () {
+        showSearch(context: context, delegate: Search());
+      },
+      child: const TextField(
+        decoration: InputDecoration(
             hintText: 'Search for your city name',
             suffixIcon: Icon(Icons.search_rounded)),
-        onTap: () {
-          showSearch(context: context, delegate: Search());
-        });
+        enabled: false,
+      ),
+    );
   }
 }
