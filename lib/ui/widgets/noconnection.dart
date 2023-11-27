@@ -10,43 +10,48 @@ class NoConnection extends StatelessWidget {
         valueListenable: isConnectedNotifier,
         builder: (context, isConnected, _) {
           return isConnected
-              ? Column(
-                  children: [
-                    const FittedBox(
-                      child: SizedBox(
-                          height: 400,
-                          width: 400,
-                          child: RiveAnimation.asset('assets1/forcast.riv')),
-                      //assets/no_forcast.riv
-                      //images/conexion.riv
-                    ),
-                    Text(
-                      'No Forcast Data',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineLarge
-                          ?.copyWith(color: Theme.of(context).primaryColor),
-                    )
-                  ],
+              ? Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const FittedBox(
+                        child: SizedBox(
+                            height: 400,
+                            width: 400,
+                            child: RiveAnimation.asset('assets1/forcast.riv')),
+                        //assets/no_forcast.riv
+                        //images/conexion.riv
+                      ),
+                      Text(
+                        'No Forcast Data',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineLarge
+                            ?.copyWith(color: Theme.of(context).primaryColor),
+                      )
+                    ],
+                  ),
                 )
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                        height: 200,
-                        child: Image.asset('assets2/connection.png')),
-                    Text(
-                      'No Internet Connection',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineLarge
-                          ?.copyWith(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 30),
-                    ),
-                  ],
+              : Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                          height: 200,
+                          child: Image.asset('assets2/connection.png')),
+                      Text(
+                        'No Internet Connection',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineLarge
+                            ?.copyWith(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 30),
+                      ),
+                    ],
+                  ),
                 );
         });
   }
