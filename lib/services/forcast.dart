@@ -7,7 +7,7 @@ import 'package:weather_app/models/suggestion.dart';
 
 class ForcastWeather {
   // Todo Get the Free key From weatherapi.com
-  static const myWeatherApiKey = 'ea7a6ada9ad94cec8a0175451230107';
+  static const myWeatherApiKey = 'Put your api key here';
   Future<CurrentWeatherModel?> getCurrentWeatherResponse(String query) async {
     http.Response response = await http.get(Uri.parse(
         'https://api.weatherapi.com/v1/current.json?key=${myWeatherApiKey}&q=$query&aqi=no'));
